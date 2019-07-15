@@ -1,0 +1,10 @@
+{
+  "name": "simple-slack-clone",
+  "version": "0.0.1",
+  "description": "Simple slack clone made with React",
+  "main": "index.js",
+  "repository": "https://github.com/wakematta/simple-slack-clone",
+  "author": "Mohamed Ziata <wakematta@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
