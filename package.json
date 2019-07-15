@@ -11,6 +11,7 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
+    "@pusher/chatkit-client": "^1.9.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-scripts": "3.0.1"
