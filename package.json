@@ -3,11 +3,28 @@
   "version": "0.0.1",
   "description": "Simple slack clone made with React",
   "main": "index.js",
-  "repository": "https://github.com/wakematta/simple-slack-clone",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wakematta/simple-slack-clone.git"
+  },
   "author": "Mohamed Ziata <wakematta@gmail.com>",
   "license": "MIT",
   "private": false,
   "dependencies": {
     "react": "^16.8.6"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/wakematta/simple-slack-clone/issues"
+  },
+  "homepage": "https://github.com/wakematta/simple-slack-clone#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clone",
+    "simple",
+    "slack",
+    "react"
+  ]
 }
