@@ -14,6 +14,7 @@ class App extends React.Component {
     this.state = {
       messages: []
     }
+    this.sendMessage = this.sendMessage.bind(this)
   }
 
   componentDidMount() {
@@ -29,7 +30,8 @@ class App extends React.Component {
       .connect()
       .then(currentUser => {
         // console.log('Successful connection', currentUser)
-        currentUser.subscribeToRoom({
+        this.currentUser = currentUser
+        this.currentUser.subscribeToRoom({
           roomId: '21655498',
           messageLimit: 20,
           hooks: {
@@ -47,12 +49,19 @@ class App extends React.Component {
       })
   }
 
+  sendMessage(text) {
+    this.currentUser.sendMessage({
+      text: text,
+      roomId: '21655498'
+    })
+  }
+
   render() {
     return (
       <div className="app">
         <ChannelList />
         <MessageList messages={this.state.messages} />
-        <SendMessageForm />
+        <SendMessageForm sendMessage={this.sendMessage} />
         <NewChannelForm />
       </div>
     )
