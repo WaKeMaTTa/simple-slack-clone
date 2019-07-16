@@ -28,13 +28,13 @@ class App extends React.Component {
     chatManager
       .connect()
       .then(currentUser => {
-        console.log('Successful connection', currentUser)
+        // console.log('Successful connection', currentUser)
         currentUser.subscribeToRoom({
           roomId: '21655498',
           messageLimit: 20,
           hooks: {
             onMessage: message => {
-              console.log('message.text: ', message.text)
+              // console.log('message.text: ', message.text)
               this.setState({
                 messages: [...this.state.messages, message]
               })
