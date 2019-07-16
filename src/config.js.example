@@ -1,0 +1,4 @@
+const tokenUrl = "https://us1.pusherplatform.io/services/chatkit_token_provider/v1/MY_TOKEN_HERE/token";
+const instanceLocator = "v1:us1:MY_TOKEN_HERE";
+
+export { tokenUrl, instanceLocator }
