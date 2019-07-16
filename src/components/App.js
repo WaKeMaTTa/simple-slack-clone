@@ -9,6 +9,13 @@ import ChannelList from "./ChannelList"
 import NewChannelForm from "./NewChannelForm"
 
 class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      messages: []
+    }
+  }
+
   componentDidMount() {
     const chatManager = new Chatkit.ChatManager({
       instanceLocator: instanceLocator,
@@ -28,6 +35,9 @@ class App extends React.Component {
           hooks: {
             onMessage: message => {
               console.log('message.text: ', message.text)
+              this.setState({
+                messages: [...this.state.messages, message]
+              })
             }
           }
         })
@@ -41,7 +51,7 @@ class App extends React.Component {
     return (
       <div className="app">
         <ChannelList />
-        <MessageList />
+        <MessageList messages={this.state.messages} />
         <SendMessageForm />
         <NewChannelForm />
       </div>
