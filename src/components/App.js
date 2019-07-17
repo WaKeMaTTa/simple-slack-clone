@@ -36,7 +36,6 @@ class App extends React.Component {
         // console.log('Successful connection', currentUser)
         this.currentUser = currentUser
         this.getChannels()
-        this.subscribeToChannel()
       })
       .catch(err => {
         console.log('Error on connection', err)
@@ -57,10 +56,10 @@ class App extends React.Component {
        })
    }
 
-  subscribeToChannel() {
+  subscribeToChannel(roomId) {
     this.currentUser
       .subscribeToRoom({
-        roomId: '21655498',
+        roomId,
         messageLimit: 20,
         hooks: {
           onMessage: message => {
@@ -83,7 +82,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <ChannelList channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
+        <ChannelList subscribeToChannel={this.subscribeToChannel}
+                     channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
         <NewChannelForm />

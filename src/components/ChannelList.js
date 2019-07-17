@@ -11,7 +11,10 @@ class ChannelList extends React.Component {
             this.props.channels.map(channel => {
               return (
                 <li key={channel.id} className="channel">
-                  <a href="#">#{channel.name}</a>
+                  <a onClick={() => this.props.subscribeToChannel(channel.id)}
+                     href="#">
+                    #{channel.name}
+                  </a>
                 </li>
               )
             })
