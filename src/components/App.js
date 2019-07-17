@@ -114,7 +114,8 @@ class App extends React.Component {
         <ChannelList channelId={this.state.channelId}
                      subscribeToChannel={this.subscribeToChannel}
                      channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
-        <MessageList messages={this.state.messages} />
+        <MessageList channelId={this.state.channelId}
+                     messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
         <NewChannelForm createChannel={this.createChannel} />
       </div>

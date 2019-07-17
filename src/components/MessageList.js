@@ -15,6 +15,16 @@ class MessageList extends React.Component {
   }
 
   render() {
+    if (!this.props.channelId) {
+      return (
+        <div className="message-list">
+          <div className="join-channel">
+            &larr; Join a channel!
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="message-list">
         {
