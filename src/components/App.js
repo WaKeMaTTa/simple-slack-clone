@@ -96,6 +96,10 @@ class App extends React.Component {
     })
   }
 
+  createChannel(channelName) {
+    console.log('Creating channel with name ', channelName)
+  }
+
   render() {
     return (
       <div className="app">
@@ -104,7 +108,7 @@ class App extends React.Component {
                      channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />
-        <NewChannelForm />
+        <NewChannelForm createChannel={this.createChannel} />
       </div>
     )
   }
