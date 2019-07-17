@@ -99,7 +99,8 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <ChannelList subscribeToChannel={this.subscribeToChannel}
+        <ChannelList channelId={this.state.channelId}
+                     subscribeToChannel={this.subscribeToChannel}
                      channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
         <MessageList messages={this.state.messages} />
         <SendMessageForm sendMessage={this.sendMessage} />

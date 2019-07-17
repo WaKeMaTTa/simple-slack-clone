@@ -12,8 +12,9 @@ class ChannelList extends React.Component {
         <ul>
           {
             orderedChannels.map(channel => {
+              const active = this.props.channelId === channel.id ? "active" : "";
               return (
-                <li key={channel.id} className="channel">
+                <li key={channel.id} className={"channel " + active}>
                   <a onClick={() => this.props.subscribeToChannel(channel.id)}
                      href="#">
                     #{channel.name}
