@@ -12,6 +12,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
+      channelId: null,
       messages: [],
       joinableChannels: [],
       joinedChannels: []
@@ -75,6 +76,9 @@ class App extends React.Component {
         }
       })
       .then(channel => {
+        this.setState({
+          channelId: channel.id
+        })
         this.getChannels()
       })
       .catch(err => console.log('Error on subscribing to channel: ', err))
@@ -83,7 +87,7 @@ class App extends React.Component {
   sendMessage(text) {
     this.currentUser.sendMessage({
       text: text,
-      roomId: '21655498'
+      roomId: this.state.channelId
     })
   }
 
