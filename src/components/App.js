@@ -86,11 +86,6 @@ class App extends React.Component {
   }
 
   sendMessage(text) {
-    if (this.state.channelId == null) {
-      alert('You must be in a channel first.')
-      return
-    }
-
     this.currentUser.sendMessage({
       text: text,
       roomId: this.state.channelId
@@ -116,7 +111,8 @@ class App extends React.Component {
                      channels={[...this.state.joinableChannels, ...this.state.joinedChannels]} />
         <MessageList channelId={this.state.channelId}
                      messages={this.state.messages} />
-        <SendMessageForm sendMessage={this.sendMessage} />
+        <SendMessageForm disabled={!this.state.channelId}
+                         sendMessage={this.sendMessage} />
         <NewChannelForm createChannel={this.createChannel} />
       </div>
     )
