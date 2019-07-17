@@ -2,7 +2,7 @@ import React from "react"
 
 class ChannelList extends React.Component {
   render() {
-    console.log(this.props.channels)
+    // console.log(this.props.channels)
     return (
       <div className="channels-list">
         <h3>Channels</h3>

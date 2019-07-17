@@ -17,6 +17,8 @@ class App extends React.Component {
       joinedChannels: []
     }
     this.sendMessage = this.sendMessage.bind(this)
+    this.getChannels = this.getChannels.bind(this)
+    this.subscribeToChannel = this.subscribeToChannel.bind(this)
   }
 
   componentDidMount() {
@@ -33,35 +35,41 @@ class App extends React.Component {
       .then(currentUser => {
         // console.log('Successful connection', currentUser)
         this.currentUser = currentUser
-
-        this.currentUser
-          .getJoinableRooms()
-          .then(joinableRooms => {
-            this.setState({
-              joinableChannels: joinableRooms,
-              joinedChannels: this.currentUser.rooms
-            })
-          })
-          .catch(err => {
-            console.log('Error on joinableRooms: ', err)
-          })
-
-        this.currentUser
-          .subscribeToRoom({
-            roomId: '21655498',
-            messageLimit: 20,
-            hooks: {
-              onMessage: message => {
-                // console.log('message.text: ', message.text)
-                this.setState({
-                  messages: [...this.state.messages, message]
-                })
-              }
-            }
-          })
+        this.getChannels()
+        this.subscribeToChannel()
       })
       .catch(err => {
         console.log('Error on connection', err)
+      })
+  }
+
+  getChannels() {
+     this.currentUser
+       .getJoinableRooms()
+       .then(joinableRooms => {
+         this.setState({
+           joinableChannels: joinableRooms,
+           joinedChannels: this.currentUser.rooms
+         })
+       })
+       .catch(err => {
+         console.log('Error on joinableRooms: ', err)
+       })
+   }
+
+  subscribeToChannel() {
+    this.currentUser
+      .subscribeToRoom({
+        roomId: '21655498',
+        messageLimit: 20,
+        hooks: {
+          onMessage: message => {
+            // console.log('message.text: ', message.text)
+            this.setState({
+              messages: [...this.state.messages, message]
+            })
+          }
+        }
       })
   }
 
