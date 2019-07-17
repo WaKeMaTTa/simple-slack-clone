@@ -56,10 +56,14 @@ class App extends React.Component {
        })
    }
 
-  subscribeToChannel(roomId) {
+  subscribeToChannel(channelId) {
+    this.setState({
+      messages: []
+    })
+
     this.currentUser
       .subscribeToRoom({
-        roomId,
+        roomId: channelId,
         messageLimit: 20,
         hooks: {
           onMessage: message => {
@@ -70,6 +74,10 @@ class App extends React.Component {
           }
         }
       })
+      .then(channel => {
+        this.getChannels()
+      })
+      .catch(err => console.log('Error on subscribing to channel: ', err))
   }
 
   sendMessage(text) {
