@@ -20,6 +20,7 @@ class App extends React.Component {
     this.sendMessage = this.sendMessage.bind(this)
     this.getChannels = this.getChannels.bind(this)
     this.subscribeToChannel = this.subscribeToChannel.bind(this)
+    this.createChannel = this.createChannel.bind(this)
   }
 
   componentDidMount() {
@@ -34,7 +35,7 @@ class App extends React.Component {
     chatManager
       .connect()
       .then(currentUser => {
-        // console.log('Successful connection', currentUser)
+        console.log('Successful connection', currentUser)
         this.currentUser = currentUser
         this.getChannels()
       })
@@ -97,7 +98,14 @@ class App extends React.Component {
   }
 
   createChannel(channelName) {
-    console.log('Creating channel with name ', channelName)
+    // console.log('Creating channel with name ', channelName)
+    this.currentUser.createRoom({
+        name: channelName
+      })
+      .then(channel => {
+        this.subscribeToChannel(channel.id)
+      })
+      .catch(err => console.log('Error with createChannel', err))
   }
 
   render() {
